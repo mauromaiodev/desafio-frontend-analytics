@@ -1,0 +1,14 @@
+.game-controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eceff5;
+    border: 1px solid;
+    border-radius: 5px;
+  }
+  
+  .game-controls {
+    display: flex;
+    gap: 10px;
+  }
+  
