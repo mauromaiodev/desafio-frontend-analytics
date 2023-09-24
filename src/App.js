@@ -161,6 +161,7 @@ function App() {
             onRestart={restartGame}
             highScore={highScore}
             currentScore={currentScore}
+            gameInProgress={gameInProgress}
           />
         </div>
         <ColorDisplay currentColor={currentColor} />

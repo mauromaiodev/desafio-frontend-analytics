@@ -1,8 +1,8 @@
 import React from "react";
 
-function RestartButton({ onClick }) {
+function RestartButton({ onClick, disabled }) {
   return (
-    <button onClick={onClick} className="restart-button">
+    <button onClick={onClick} className="restart-button" disabled={disabled}>
       RESTART
     </button>
   );
