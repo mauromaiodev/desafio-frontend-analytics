@@ -16,13 +16,22 @@ function App() {
   const [colorOptions, setColorOptions] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [gameHistory, setGameHistory] = useState([]);
-  const [timer, setTimer] = useState(30);
+  const [gameTimer, setGameTimer] = useState(30);
   const [selectedOption, setSelectedOption] = useState("");
+  const [gameOver, setGameOver] = useState(false);
+  const [gameStandby, setGameStandby] = useState(false);
 
   const startGame = () => {
     setGameInProgress(true);
+    setGameStandby(false);
+    startGameTimer();
     startRound();
   };
+
+  const startGameTimer = useCallback(() => {
+    setGameTimer(30);
+    setGameOver(false);
+  }, []);
 
   const restartGame = () => {
     setCurrentScore(0);
@@ -68,8 +77,6 @@ function App() {
     const options = generateColorOptions(newColor);
     setColorOptions(options);
 
-    setTimer(30);
-
     setSelectedOption("");
   }, [generateRandomColor, generateColorOptions]);
 
@@ -82,14 +89,15 @@ function App() {
   };
 
   const handleColorClick = (selectedColor) => {
-    setSelectedOption(selectedColor);
-    if (selectedColor === currentColor) {
-      setCurrentScore(currentScore + 1);
-    } else {
-      setCurrentScore(currentScore - 1);
+    if (!gameOver && !gameStandby) {
+      setSelectedOption(selectedColor);
+      if (selectedColor === currentColor) {
+        setCurrentScore(currentScore + 1);
+      } else {
+        setCurrentScore(currentScore - 1);
+      }
+      addToGameHistory(selectedColor === currentColor);
     }
-    addToGameHistory(selectedColor === currentColor);
-    startRound();
   };
 
   const addToGameHistory = useCallback(
@@ -98,27 +106,29 @@ function App() {
         selectedOption,
         color: currentColor,
         correct,
-        time: 30 - timer + "s",
+        time: 30 - gameTimer + "s",
       };
       setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
+
+      if (gameTimer === 0) {
+        setGameOver(true);
+        setGameStandby(true);
+      } else {
+        startRound();
+      }
     },
-    [selectedOption, currentColor, timer]
+    [selectedOption, currentColor, gameTimer, startRound]
   );
 
   useEffect(() => {
-    if (gameInProgress) {
+    if (gameInProgress && gameTimer > 0) {
       const intervalId = setInterval(() => {
-        if (timer > 0) {
-          setTimer(timer - 1);
-        } else {
-          addToGameHistory(false);
-          startRound();
-        }
+        setGameTimer((prevTimer) => prevTimer - 1);
       }, 1000);
 
       return () => clearInterval(intervalId);
     }
-  }, [timer, gameInProgress, addToGameHistory, startRound]);
+  }, [gameTimer, gameInProgress]);
 
   useEffect(() => {
     if (currentScore > highScore) {
@@ -148,7 +158,7 @@ function App() {
               ))}
             </div>
             <GameControls
-              timer={timer}
+              timer={gameTimer}
               onRestart={restartGame}
               highScore={highScore}
               currentScore={currentScore}
