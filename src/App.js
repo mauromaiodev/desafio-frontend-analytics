@@ -156,17 +156,6 @@ function App() {
         <ColorDisplay currentColor={currentColor} />
         {gameInProgress ? (
           <div className="game-panel">
-            <h2>Guess the Color:</h2>
-            <div className="color-options">
-              {colorOptions.map((option, index) => (
-                <ColorOption
-                  key={index}
-                  option={option}
-                  selected={selectedOption === option}
-                  onClick={handleColorClick}
-                />
-              ))}
-            </div>
             <GameControls
               timer={gameTimer}
               onRestart={restartGame}
@@ -177,6 +166,16 @@ function App() {
         ) : (
           <StartPanel startGame={startGame} />
         )}
+        <div className="color-options">
+          {colorOptions.map((option, index) => (
+            <ColorOption
+              key={index}
+              option={option}
+              selected={selectedOption === option}
+              onClick={handleColorClick}
+            />
+          ))}
+        </div>
 
         <ResetButton resetAllData={resetAllData} />
       </Container>
