@@ -1,5 +1,5 @@
 import React from "react";
-import "./Container.css"; // Importe o arquivo CSS para o componente
+import "./Container.css";
 
 function Container({ children }) {
   return <div className="container">{children}</div>;

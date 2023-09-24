@@ -24,12 +24,14 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [gameStandby, setGameStandby] = useState(false);
+  const [startPanelVisible, setStartPanelVisible] = useState(true);
 
   const startGame = () => {
     setGameInProgress(true);
     setGameStandby(false);
     startGameTimer();
     startRound();
+    setStartPanelVisible(false);
   };
 
   const startGameTimer = useCallback(() => {
@@ -153,19 +155,15 @@ function App() {
       </Sidebar>
       <Container>
         <h1>Guess the color</h1>
+        <div className="game-panel">
+          <GameControls
+            timer={gameTimer}
+            onRestart={restartGame}
+            highScore={highScore}
+            currentScore={currentScore}
+          />
+        </div>
         <ColorDisplay currentColor={currentColor} />
-        {gameInProgress ? (
-          <div className="game-panel">
-            <GameControls
-              timer={gameTimer}
-              onRestart={restartGame}
-              highScore={highScore}
-              currentScore={currentScore}
-            />
-          </div>
-        ) : (
-          <StartPanel startGame={startGame} />
-        )}
         <div className="color-options">
           {colorOptions.map((option, index) => (
             <ColorOption
@@ -176,7 +174,7 @@ function App() {
             />
           ))}
         </div>
-
+        {startPanelVisible && <StartPanel startGame={startGame} />}
         <ResetButton resetAllData={resetAllData} />
       </Container>
     </div>
