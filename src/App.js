@@ -10,13 +10,17 @@ import Sidebar from "./components/SideBar/SideBar";
 import StartPanel from "./components/StartPanel/StartPanel";
 
 function App() {
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(
+    () => parseInt(localStorage.getItem("highScore")) || 0
+  );
   const [currentScore, setCurrentScore] = useState(0);
   const [currentColor, setCurrentColor] = useState("");
   const [colorOptions, setColorOptions] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
-  const [gameHistory, setGameHistory] = useState([]);
-  const [gameTimer, setGameTimer] = useState(30);
+  const [gameHistory, setGameHistory] = useState(
+    () => JSON.parse(localStorage.getItem("gameHistory")) || []
+  );
+  const [gameTimer, setGameTimer] = useState(10);
   const [selectedOption, setSelectedOption] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [gameStandby, setGameStandby] = useState(false);
@@ -29,7 +33,7 @@ function App() {
   };
 
   const startGameTimer = useCallback(() => {
-    setGameTimer(30);
+    setGameTimer(10);
     setGameOver(false);
   }, []);
 
@@ -44,6 +48,8 @@ function App() {
     setHighScore(0);
     setGameHistory([]);
     setGameInProgress(false);
+    localStorage.removeItem("highScore");
+    localStorage.removeItem("gameHistory");
   };
 
   const generateRandomColor = useCallback(() => {
@@ -106,7 +112,7 @@ function App() {
         selectedOption,
         color: currentColor,
         correct,
-        time: 30 - gameTimer + "s",
+        time: 10 - gameTimer + "s",
       };
       setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
 
@@ -133,8 +139,13 @@ function App() {
   useEffect(() => {
     if (currentScore > highScore) {
       setHighScore(currentScore);
+      localStorage.setItem("highScore", currentScore.toString());
     }
   }, [currentScore, highScore]);
+
+  useEffect(() => {
+    localStorage.setItem("gameHistory", JSON.stringify(gameHistory));
+  }, [gameHistory]);
 
   return (
     <div className="App">
@@ -165,7 +176,7 @@ function App() {
             />
           </div>
         ) : (
-          <StartPanel startGame={startGame} resetGame={resetAllData} />
+          <StartPanel startGame={startGame} />
         )}
 
         <ResetButton resetAllData={resetAllData} />
