@@ -38,8 +38,7 @@ function App() {
   }, []);
 
   const restartGame = () => {
-    setCurrentScore(0);
-    setGameHistory([]);
+    startGameTimer();
     startRound();
   };
 
