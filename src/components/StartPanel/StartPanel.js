@@ -1,10 +1,9 @@
 import React from "react";
 
-function StartPanel({ startGame, resetGame }) {
+function StartPanel({ startGame }) {
   return (
     <div className="start-panel">
       <button onClick={startGame}>START</button>
-      <button onClick={resetGame}>RESET</button>
     </div>
   );
 }
