@@ -1,5 +1,5 @@
 import React from "react";
-import "./ColorDisplay.css"; // Importe o arquivo CSS para o componente
+import "./ColorDisplay.css";
 
 function ColorDisplay({ currentColor }) {
   return (
