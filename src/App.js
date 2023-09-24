@@ -20,7 +20,7 @@ function App() {
   const [gameHistory, setGameHistory] = useState(
     () => JSON.parse(localStorage.getItem("gameHistory")) || []
   );
-  const [gameTimer, setGameTimer] = useState(10);
+  const [gameTimer, setGameTimer] = useState(30);
   const [selectedOption, setSelectedOption] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [gameStandby, setGameStandby] = useState(false);
@@ -33,7 +33,7 @@ function App() {
   };
 
   const startGameTimer = useCallback(() => {
-    setGameTimer(10);
+    setGameTimer(30);
     setGameOver(false);
   }, []);
 
@@ -112,7 +112,7 @@ function App() {
         selectedOption,
         color: currentColor,
         correct,
-        time: 10 - gameTimer + "s",
+        time: 30 - gameTimer + "s",
       };
       setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
 
