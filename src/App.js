@@ -182,8 +182,8 @@ function App() {
             ))}
         </div>
         {startPanelVisible && <StartPanel startGame={startGame} />}
-        <ResetButton resetAllData={resetAllData} />
       </Container>
+      <ResetButton resetAllData={resetAllData} />
     </div>
   );
 }
