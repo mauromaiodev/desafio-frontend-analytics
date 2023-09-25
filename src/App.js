@@ -119,20 +119,20 @@ function App() {
 
   const handleColorClick = (selectedColor) => {
     if (!gameOver && !gameStandby) {
-      setSelectedOption(selectedColor);
       if (selectedColor === currentColor) {
         setCurrentScore(currentScore + 1);
       } else {
         setCurrentScore(currentScore - 1);
       }
-      recordGameHistory(selectedColor === currentColor);
+      recordGameHistory(selectedColor, selectedColor === currentColor);
+      setSelectedOption(selectedColor);
     }
   };
 
   const recordGameHistory = useCallback(
-    (correct) => {
+    (selectedColor, correct) => {
       const historyItem = {
-        selectedOption,
+        selectedOption: selectedColor,
         color: currentColor,
         correct,
         time: `${30 - gameTimer}s`,
@@ -146,7 +146,7 @@ function App() {
         startRound();
       }
     },
-    [selectedOption, currentColor, gameTimer, startRound]
+    [currentColor, gameTimer, startRound]
   );
 
   useEffect(() => {
