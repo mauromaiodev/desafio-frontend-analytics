@@ -157,7 +157,7 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar>
+      <Sidebar className="sidebar">
         <GameHistory gameHistory={gameHistory} />
       </Sidebar>
       <Container title={"Guess the Color"}>

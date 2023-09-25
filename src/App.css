@@ -1,12 +1,8 @@
 .App {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-.center-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+.sidebar {
+  overflow-y: auto;
 }
