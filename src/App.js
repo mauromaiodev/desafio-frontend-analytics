@@ -64,6 +64,11 @@ function App() {
     return color;
   }, []);
 
+  const initializeCurrentColor = useCallback(() => {
+    const newColor = generateRandomColor();
+    setCurrentColor(newColor);
+  }, [generateRandomColor]);
+
   const generateColorOptions = useCallback(
     (correctColor) => {
       const options = [];
@@ -128,6 +133,10 @@ function App() {
     },
     [selectedOption, currentColor, gameTimer, startRound]
   );
+
+  useEffect(() => {
+    initializeCurrentColor();
+  }, [initializeCurrentColor]);
 
   useEffect(() => {
     if (gameInProgress && gameTimer > 0) {
