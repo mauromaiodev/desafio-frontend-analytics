@@ -40,6 +40,7 @@ function App() {
   }, []);
 
   const restartGame = () => {
+    setCurrentScore(0);
     startGameTimer();
     startRound();
   };
