@@ -160,8 +160,7 @@ function App() {
       <Sidebar>
         <GameHistory gameHistory={gameHistory} />
       </Sidebar>
-      <Container>
-        <h1>Guess the color</h1>
+      <Container title={"Guess the Color"}>
         <GameControls
           timer={gameTimer}
           onRestart={restartGame}
