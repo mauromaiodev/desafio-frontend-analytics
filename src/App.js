@@ -43,6 +43,8 @@ function App() {
     setCurrentScore(0);
     startGameTimer();
     startRound();
+    setGameOver(false);
+    setGameStandby(false);
   };
 
   const resetAllData = () => {
