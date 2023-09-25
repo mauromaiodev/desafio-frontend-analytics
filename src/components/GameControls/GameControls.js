@@ -13,11 +13,9 @@ function GameControls({
 }) {
   return (
     <div className="game-controls-container">
-      <div className="game-controls">
-        <RemainingTime timer={timer} />
-        <RestartButton onClick={onRestart} disabled={!gameInProgress} />
-        <ScorePanel highScore={highScore} currentScore={currentScore} />
-      </div>
+      <RemainingTime timer={timer} />
+      <RestartButton onClick={onRestart} disabled={!gameInProgress} />
+      <ScorePanel highScore={highScore} currentScore={currentScore} />
     </div>
   );
 }

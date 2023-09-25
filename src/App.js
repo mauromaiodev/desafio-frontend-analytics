@@ -162,15 +162,13 @@ function App() {
       </Sidebar>
       <Container>
         <h1>Guess the color</h1>
-        <div className="game-panel">
-          <GameControls
-            timer={gameTimer}
-            onRestart={restartGame}
-            highScore={highScore}
-            currentScore={currentScore}
-            gameInProgress={gameInProgress}
-          />
-        </div>
+        <GameControls
+          timer={gameTimer}
+          onRestart={restartGame}
+          highScore={highScore}
+          currentScore={currentScore}
+          gameInProgress={gameInProgress}
+        />
         <ColorDisplay currentColor={currentColor} />
         <div className="color-options">
           {gameInProgress &&
