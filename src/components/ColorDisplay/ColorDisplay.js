@@ -3,9 +3,10 @@ import "./ColorDisplay.css";
 
 function ColorDisplay({ currentColor }) {
   return (
-    <div className="color-display" style={{ backgroundColor: currentColor }}>
-      {currentColor}
-    </div>
+    <div
+      className="color-display"
+      style={{ backgroundColor: currentColor }}
+    ></div>
   );
 }
 
