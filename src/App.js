@@ -94,7 +94,7 @@ function App() {
           options.push(randomColor);
         }
       }
-      return shuffleArray(options);
+      return sortArray(options);
     },
     [generateRandomColor]
   );
@@ -109,13 +109,7 @@ function App() {
     setSelectedOption("");
   }, [generateRandomColor, generateColorOptions]);
 
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
+  const sortArray = (array) => array.sort(() => Math.random() - 0.5);
 
   const handleColorClick = (selectedColor) => {
     if (!gameOver && !gameStandby) {
@@ -125,6 +119,14 @@ function App() {
         setCurrentScore(currentScore - 1);
       }
       recordGameHistory(selectedColor, selectedColor === currentColor);
+      console.log(
+        "🚀 ~ file: App.js:122 ~ handleColorClick ~ currentColor:",
+        currentColor
+      );
+      console.log(
+        "🚀 ~ file: App.js:122 ~ handleColorClick ~ selectedColor:",
+        selectedColor
+      );
       setSelectedOption(selectedColor);
     }
   };
