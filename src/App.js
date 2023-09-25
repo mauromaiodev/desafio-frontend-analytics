@@ -168,14 +168,15 @@ function App() {
         </div>
         <ColorDisplay currentColor={currentColor} />
         <div className="color-options">
-          {colorOptions.map((option, index) => (
-            <ColorOption
-              key={index}
-              option={option}
-              selected={selectedOption === option}
-              onClick={handleColorClick}
-            />
-          ))}
+          {gameInProgress &&
+            colorOptions.map((option, index) => (
+              <ColorOption
+                key={index}
+                option={option}
+                selected={selectedOption === option}
+                onClick={handleColorClick}
+              />
+            ))}
         </div>
         {startPanelVisible && <StartPanel startGame={startGame} />}
         <ResetButton resetAllData={resetAllData} />
