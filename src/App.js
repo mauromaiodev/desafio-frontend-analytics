@@ -27,12 +27,24 @@ function App() {
   const [gameStandby, setGameStandby] = useState(false);
   const [startPanelVisible, setStartPanelVisible] = useState(true);
 
+  const clearGameHistoryOnUnload = () => {
+    localStorage.removeItem("gameHistory");
+  };
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", clearGameHistoryOnUnload);
+    return () => {
+      window.removeEventListener("beforeunload", clearGameHistoryOnUnload);
+    };
+  }, []);
+
   const startGame = () => {
     setGameInProgress(true);
     setGameStandby(false);
     startGameTimer();
     startRound();
     setStartPanelVisible(false);
+    setGameHistory([]);
   };
 
   const startGameTimer = useCallback(() => {
