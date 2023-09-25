@@ -10,16 +10,17 @@ import Sidebar from "./components/SideBar/SideBar";
 import StartPanel from "./components/StartPanel/StartPanel";
 
 function App() {
-  const [highScore, setHighScore] = useState(
-    () => parseInt(localStorage.getItem("highScore")) || 0
-  );
+  const [highScore, setHighScore] = useState(() => {
+    const storedHighScore = localStorage.getItem("highScore");
+    return parseInt(storedHighScore) || 0;
+  });
   const [currentScore, setCurrentScore] = useState(0);
   const [currentColor, setCurrentColor] = useState("");
   const [colorOptions, setColorOptions] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
-  const [gameHistory, setGameHistory] = useState(
-    () => JSON.parse(localStorage.getItem("gameHistory")) || []
-  );
+  const [gameHistory, setGameHistory] = useState(() => {
+    return JSON.parse(localStorage.getItem("gameHistory")) || [];
+  });
   const [gameTimer, setGameTimer] = useState(30);
   const [selectedOption, setSelectedOption] = useState("");
   const [gameOver, setGameOver] = useState(false);
@@ -112,17 +113,17 @@ function App() {
       } else {
         setCurrentScore(currentScore - 1);
       }
-      addToGameHistory(selectedColor === currentColor);
+      recordGameHistory(selectedColor === currentColor);
     }
   };
 
-  const addToGameHistory = useCallback(
+  const recordGameHistory = useCallback(
     (correct) => {
       const historyItem = {
         selectedOption,
         color: currentColor,
         correct,
-        time: 30 - gameTimer + "s",
+        time: `${30 - gameTimer}s`,
       };
       setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
 
