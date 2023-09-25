@@ -180,6 +180,7 @@ function App() {
                 option={option}
                 selected={selectedOption === option}
                 onClick={handleColorClick}
+                disabled={gameOver}
               />
             ))}
         </div>
