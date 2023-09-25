@@ -131,16 +131,20 @@ function App() {
         correct,
         time: `${30 - gameTimer}s`,
       };
-      setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
 
-      if (gameTimer === 0) {
-        setGameOver(true);
-        setGameStandby(true);
-      } else {
+      if (correct) {
+        setCurrentColor(generateRandomColor());
+        setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
         startRound();
+      } else {
+        setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
+        if (gameTimer === 0) {
+          setGameOver(true);
+          setGameStandby(true);
+        }
       }
     },
-    [currentColor, gameTimer, startRound]
+    [gameTimer, currentColor, startRound, generateRandomColor]
   );
 
   useEffect(() => {
