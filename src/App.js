@@ -119,14 +119,6 @@ function App() {
         setCurrentScore(currentScore - 1);
       }
       recordGameHistory(selectedColor, selectedColor === currentColor);
-      console.log(
-        "🚀 ~ file: App.js:122 ~ handleColorClick ~ currentColor:",
-        currentColor
-      );
-      console.log(
-        "🚀 ~ file: App.js:122 ~ handleColorClick ~ selectedColor:",
-        selectedColor
-      );
       setSelectedOption(selectedColor);
     }
   };
