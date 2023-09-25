@@ -133,6 +133,11 @@ function App() {
     if (gameInProgress && gameTimer > 0) {
       const intervalId = setInterval(() => {
         setGameTimer((prevTimer) => prevTimer - 1);
+
+        if (gameTimer === 1) {
+          setGameOver(true);
+          setGameStandby(true);
+        }
       }, 1000);
 
       return () => clearInterval(intervalId);
