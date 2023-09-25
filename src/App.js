@@ -125,19 +125,28 @@ function App() {
 
   const recordGameHistory = useCallback(
     (selectedColor, correct) => {
-      const historyItem = {
-        selectedOption: selectedColor,
-        color: currentColor,
-        correct,
-        time: `${30 - gameTimer}s`,
-      };
-
       if (correct) {
-        setCurrentColor(generateRandomColor());
+        const historyItem = {
+          selectedOption: selectedColor,
+          color: currentColor,
+          correct,
+          time: `${30 - gameTimer}s`,
+        };
+
         setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
+
+        setCurrentColor(generateRandomColor());
         startRound();
       } else {
-        setGameHistory((prevHistory) => [historyItem, ...prevHistory]);
+        const wrongColor = selectedColor;
+        const historyItemWrong = {
+          selectedOption: selectedColor,
+          color: wrongColor,
+          correct: false,
+          time: `${30 - gameTimer}s`,
+        };
+        setGameHistory((prevHistory) => [historyItemWrong, ...prevHistory]);
+
         if (gameTimer === 0) {
           setGameOver(true);
           setGameStandby(true);
