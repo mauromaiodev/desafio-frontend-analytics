@@ -1,0 +1,13 @@
+.color-option {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .color-option:hover {
+    background-color: #f0f0f0;
+  }
+  

@@ -1,4 +1,5 @@
 import React from "react";
+import "./ColorOption.css";
 
 function ColorOption({ option, selected, onClick }) {
   return (
