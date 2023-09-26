@@ -24,14 +24,16 @@ function GameHistory({ gameHistory }) {
       <ul className="ul-container">
         {gameHistory.map((item, index) => (
           <li key={index} className="li-container">
-            <div
-              className="color-box"
-              style={{
-                backgroundColor: item.color,
-                color: getContrastColor(item.color),
-              }}
-            >
-              {item.color}
+            <div className="color-box">
+              <div
+                style={{
+                  backgroundColor: item.color,
+                  color: getContrastColor(item.color),
+                }}
+                className="color-text"
+              >
+                {item.color}
+              </div>
             </div>
             <div className="result">
               {item.correct ? <CorrectIcon /> : <IncorrectIcon />}
