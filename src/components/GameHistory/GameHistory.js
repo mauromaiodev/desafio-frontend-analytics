@@ -1,4 +1,5 @@
 import React from "react";
+import { CorrectIcon, IncorrectIcon } from "../Icons/Icons";
 
 function GameHistory({ gameHistory }) {
   return (
@@ -7,7 +8,8 @@ function GameHistory({ gameHistory }) {
       <ul>
         {gameHistory.map((item, index) => (
           <li key={index}>
-            {item.color} {item.correct ? "Correct" : "Incorrect"} {item.time}
+            {item.color} {item.correct ? <CorrectIcon /> : <IncorrectIcon />}{" "}
+            {item.time}
           </li>
         ))}
       </ul>
