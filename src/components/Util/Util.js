@@ -7,3 +7,7 @@ export function getContrastColor(hexColor) {
 
   return Y >= 128 ? "#000000" : "#ffffff";
 }
+
+export function sortArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
