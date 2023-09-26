@@ -193,27 +193,29 @@ function App() {
         <GameHistory gameHistory={gameHistory} />
       </Sidebar>
       <Container title={"Guess the Color"}>
-        <GameControls
-          timer={gameTimer}
-          onRestart={restartGame}
-          highScore={highScore}
-          currentScore={currentScore}
-          gameInProgress={gameInProgress}
-        />
-        <ColorDisplay currentColor={currentColor} />
-        <div className="color-options">
-          {gameInProgress &&
-            colorOptions.map((option, index) => (
-              <ColorOption
-                key={index}
-                option={option}
-                selected={selectedOption === option}
-                onClick={handleColorClick}
-                disabled={gameOver}
-              />
-            ))}
+        <div className="container-child">
+          <GameControls
+            timer={gameTimer}
+            onRestart={restartGame}
+            highScore={highScore}
+            currentScore={currentScore}
+            gameInProgress={gameInProgress}
+          />
+          <ColorDisplay currentColor={currentColor} />
+          <div className="color-options-container">
+            {gameInProgress &&
+              colorOptions.map((option, index) => (
+                <ColorOption
+                  key={index}
+                  option={option}
+                  selected={selectedOption === option}
+                  onClick={handleColorClick}
+                  disabled={gameOver}
+                />
+              ))}
+          </div>
+          {startPanelVisible && <StartPanel startGame={startGame} />}
         </div>
-        {startPanelVisible && <StartPanel startGame={startGame} />}
       </Container>
       <ResetButton resetAllData={resetAllData} />
     </div>

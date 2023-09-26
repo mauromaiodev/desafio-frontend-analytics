@@ -6,3 +6,16 @@
 .sidebar {
   overflow-y: auto;
 }
+
+.container-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 400px;
+}
+
+.color-options-container {
+  display: flex;
+  flex-direction: row;
+}

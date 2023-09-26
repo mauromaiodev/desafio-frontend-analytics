@@ -4,7 +4,8 @@
   border: 1px solid #ccc;
   padding: 8px 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
+
 }
 
 .color-option:not(:disabled):hover {
