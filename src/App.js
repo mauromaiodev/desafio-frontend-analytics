@@ -126,7 +126,7 @@ function App() {
   const handleColorClick = (selectedColor) => {
     if (!gameOver && !gameStandby) {
       if (selectedColor === currentColor) {
-        setCurrentScore(currentScore + 1);
+        setCurrentScore(currentScore + 5);
       } else {
         setCurrentScore(currentScore - 1);
       }
