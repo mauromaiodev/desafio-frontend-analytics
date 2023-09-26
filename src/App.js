@@ -26,6 +26,7 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [gameStandby, setGameStandby] = useState(false);
   const [startPanelVisible, setStartPanelVisible] = useState(true);
+  const [timeSinceLastColorChange, setTimeSinceLastColorChange] = useState(0);
 
   const clearGameHistoryOnUnload = () => {
     localStorage.removeItem("gameHistory");
@@ -101,6 +102,15 @@ function App() {
     [generateRandomColor]
   );
 
+  const changeColor = useCallback(() => {
+    const newColor = generateRandomColor();
+    setCurrentColor(newColor);
+
+    const options = generateColorOptions(newColor);
+    setColorOptions(options);
+    setTimeSinceLastColorChange(0);
+  }, [generateRandomColor, generateColorOptions]);
+
   const startRound = useCallback(() => {
     const newColor = generateRandomColor();
     setCurrentColor(newColor);
@@ -166,16 +176,21 @@ function App() {
     if (gameInProgress && gameTimer > 0) {
       const intervalId = setInterval(() => {
         setGameTimer((prevTimer) => prevTimer - 1);
+        setTimeSinceLastColorChange((prevTime) => prevTime + 1);
 
         if (gameTimer === 1) {
           setGameOver(true);
           setGameStandby(true);
         }
+
+        if (timeSinceLastColorChange === 10) {
+          changeColor();
+        }
       }, 1000);
 
       return () => clearInterval(intervalId);
     }
-  }, [gameTimer, gameInProgress]);
+  }, [gameTimer, gameInProgress, timeSinceLastColorChange, changeColor]);
 
   useEffect(() => {
     if (currentScore > highScore) {
