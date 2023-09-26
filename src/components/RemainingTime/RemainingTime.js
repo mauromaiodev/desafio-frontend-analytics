@@ -1,7 +1,11 @@
 import React from "react";
 
 function RemainingTime({ timer }) {
-  return <p>Remaining Time (s): {timer}</p>;
+  return (
+    <div className="remaining-time-container">
+      <p>Remaining Time (s): {timer}</p>
+    </div>
+  );
 }
 
 export default RemainingTime;
