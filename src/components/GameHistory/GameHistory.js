@@ -6,6 +6,11 @@ function GameHistory({ gameHistory }) {
   return (
     <div>
       <h3>Current/Lastest Game</h3>
+      <div className="game-history-headers">
+        <span>Guessed Color</span>
+        <span>Current Color</span>
+        <span>Score</span>
+      </div>
       <ul className="ul-container">
         {gameHistory.map((item, index) => (
           <li key={index} className="li-container">

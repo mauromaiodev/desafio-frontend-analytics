@@ -11,3 +11,11 @@
     padding: 0;
     margin: 0;
 }
+
+.game-history-headers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-weight: 600;
+}
