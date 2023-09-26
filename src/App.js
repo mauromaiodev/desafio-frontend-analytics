@@ -27,6 +27,7 @@ function App() {
   const [gameStandby, setGameStandby] = useState(false);
   const [startPanelVisible, setStartPanelVisible] = useState(true);
   const [timeSinceLastColorChange, setTimeSinceLastColorChange] = useState(0);
+  const [totalCorrectCount, setTotalCorrectCount] = useState(0);
 
   const clearGameHistoryOnUnload = () => {
     localStorage.removeItem("gameHistory");
@@ -127,6 +128,11 @@ function App() {
     if (!gameOver && !gameStandby) {
       if (selectedColor === currentColor) {
         setCurrentScore(currentScore + 5);
+        setTotalCorrectCount(totalCorrectCount + 1);
+
+        if (totalCorrectCount + 1 === 3) {
+          setGameOver(true);
+        }
       } else {
         setCurrentScore(currentScore - 1);
       }
@@ -173,8 +179,10 @@ function App() {
   }, [initializeCurrentColor]);
 
   useEffect(() => {
+    let intervalId;
+
     if (gameInProgress && gameTimer > 0) {
-      const intervalId = setInterval(() => {
+      intervalId = setInterval(() => {
         setGameTimer((prevTimer) => prevTimer - 1);
         setTimeSinceLastColorChange((prevTime) => prevTime + 1);
 
@@ -187,10 +195,20 @@ function App() {
           changeColor();
         }
       }, 1000);
-
-      return () => clearInterval(intervalId);
     }
-  }, [gameTimer, gameInProgress, timeSinceLastColorChange, changeColor]);
+
+    if (gameOver) {
+      clearInterval(intervalId);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [
+    gameTimer,
+    gameInProgress,
+    timeSinceLastColorChange,
+    changeColor,
+    gameOver,
+  ]);
 
   useEffect(() => {
     if (currentScore > highScore) {
