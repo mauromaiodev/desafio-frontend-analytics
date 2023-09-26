@@ -2,4 +2,8 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background-color: inherit;
+  border: none;
+  font-size: large;
+  cursor: pointer;
 }
