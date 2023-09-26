@@ -64,6 +64,7 @@ function App() {
     setCurrentScore(0);
     setHighScore(0);
     setGameHistory([]);
+    setGameTimer(30);
     setGameInProgress(false);
     setStartPanelVisible(true);
     localStorage.removeItem("highScore");
