@@ -183,7 +183,7 @@ function App() {
           setGameStandby(true);
         }
 
-        if (timeSinceLastColorChange === 10) {
+        if (timeSinceLastColorChange === 9) {
           changeColor();
         }
       }, 1000);
