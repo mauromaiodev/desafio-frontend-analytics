@@ -4,7 +4,7 @@ import "./GameHistory.css";
 
 function GameHistory({ gameHistory }) {
   return (
-    <div>
+    <div className="game-history-container">
       <h3>Current/Lastest Game</h3>
       <div className="game-history-headers">
         <span>Guessed Color</span>
