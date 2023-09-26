@@ -34,11 +34,16 @@ function App() {
   };
 
   useEffect(() => {
-    window.addEventListener("beforeunload", clearGameHistoryOnUnload);
+    if (!gameOver) {
+      window.addEventListener("beforeunload", clearGameHistoryOnUnload);
+    } else {
+      window.removeEventListener("beforeunload", clearGameHistoryOnUnload);
+    }
+
     return () => {
       window.removeEventListener("beforeunload", clearGameHistoryOnUnload);
     };
-  }, []);
+  }, [gameOver]);
 
   const startGame = () => {
     setGameInProgress(true);
