@@ -58,6 +58,7 @@ function App() {
     startRound();
     setGameOver(false);
     setGameStandby(false);
+    setGameHistory([]);
   };
 
   const resetAllData = () => {
