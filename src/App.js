@@ -46,7 +46,6 @@ function App() {
     startGameTimer();
     startRound();
     setStartPanelVisible(false);
-    setGameHistory([]);
   };
 
   const startGameTimer = useCallback(() => {
@@ -60,7 +59,6 @@ function App() {
     startRound();
     setGameOver(false);
     setGameStandby(false);
-    setGameHistory([]);
   };
 
   const resetAllData = () => {
