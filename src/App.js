@@ -8,6 +8,7 @@ import GameHistory from "./components/GameHistory/GameHistory";
 import ResetButton from "./components/ResetButton/ResetButton";
 import Sidebar from "./components/SideBar/SideBar";
 import StartPanel from "./components/StartPanel/StartPanel";
+import { sortArray } from "./components/Util/Util";
 
 function App() {
   const [highScore, setHighScore] = useState(() => {
@@ -124,8 +125,6 @@ function App() {
 
     setSelectedOption("");
   }, [generateRandomColor, generateColorOptions]);
-
-  const sortArray = (array) => array.sort(() => Math.random() - 0.5);
 
   const handleColorClick = (selectedColor) => {
     if (!gameOver && !gameStandby) {
