@@ -3,7 +3,7 @@ import "./Container.css";
 
 function Container({ children, title }) {
   return (
-    <div className="container">
+    <div className="container" data-testid="container">
       {title && <h1>{title}</h1>}
       {children}
     </div>
