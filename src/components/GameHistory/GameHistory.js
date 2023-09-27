@@ -5,7 +5,10 @@ import "./GameHistory.css";
 
 function GameHistory({ gameHistory }) {
   return (
-    <div className="game-history-container">
+    <div
+      className="game-history-container"
+      data-testid="game-controls-container"
+    >
       <h3>Current/Lastest Game</h3>
       <div className="game-history-headers">
         <span className="span-1">Guessed Color</span>
