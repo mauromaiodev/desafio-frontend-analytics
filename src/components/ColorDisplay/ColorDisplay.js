@@ -7,7 +7,7 @@ function ColorDisplay({ currentColor }) {
       data-testid="color-display"
       className="color-display"
       style={{ backgroundColor: currentColor }}
-    ></div>
+    />
   );
 }
 
