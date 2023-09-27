@@ -12,7 +12,10 @@ function GameControls({
   gameInProgress,
 }) {
   return (
-    <div className="game-controls-container">
+    <div
+      className="game-controls-container"
+      data-testid="game-controls-container"
+    >
       <RemainingTime timer={timer} />
       <RestartButton onClick={onRestart} disabled={!gameInProgress} />
       <ScorePanel highScore={highScore} currentScore={currentScore} />
