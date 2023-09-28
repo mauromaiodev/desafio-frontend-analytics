@@ -3,7 +3,11 @@ import "./ResetButton.css";
 
 function ResetButton({ resetAllData }) {
   return (
-    <button className="reset-button" onClick={resetAllData}>
+    <button
+      className="reset-button"
+      onClick={resetAllData}
+      data-testid="reset-button"
+    >
       RESET ALL DATA
     </button>
   );
