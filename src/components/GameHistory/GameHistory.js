@@ -3,6 +3,28 @@ import { CorrectIcon, IncorrectIcon } from "../Icons/Icons";
 import { getContrastColor } from "../Util/Util";
 import "./GameHistory.css";
 
+function GameHistoryItem({ item }) {
+  return (
+    <li className="li-container">
+      <div className="color-box">
+        <div
+          style={{
+            backgroundColor: item.color,
+            color: getContrastColor(item.color),
+          }}
+          className="color-text"
+        >
+          {item.color}
+        </div>
+      </div>
+      <div className="result">
+        {item.correct ? <CorrectIcon /> : <IncorrectIcon />}
+      </div>
+      <div className="time">{item.time}</div>
+    </li>
+  );
+}
+
 function GameHistory({ gameHistory }) {
   return (
     <div
@@ -17,23 +39,7 @@ function GameHistory({ gameHistory }) {
       </div>
       <ul className="ul-container">
         {gameHistory.map((item, index) => (
-          <li key={index} className="li-container">
-            <div className="color-box">
-              <div
-                style={{
-                  backgroundColor: item.color,
-                  color: getContrastColor(item.color),
-                }}
-                className="color-text"
-              >
-                {item.color}
-              </div>
-            </div>
-            <div className="result">
-              {item.correct ? <CorrectIcon /> : <IncorrectIcon />}
-            </div>
-            <div className="time">{item.time}</div>
-          </li>
+          <GameHistoryItem key={index} item={item} />
         ))}
       </ul>
     </div>
