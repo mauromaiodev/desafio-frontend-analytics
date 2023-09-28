@@ -226,9 +226,9 @@ function App() {
   return (
     <div className="App">
       <Sidebar className="sidebar">
-        <GameHistory gameHistory={gameHistory} />
+        <GameHistory gameHistory={gameHistory} data-testid="game-history" />
       </Sidebar>
-      <Container title={"Guess the Color"}>
+      <Container title={"Guess the Color"} data-testid="container">
         <div className="container-child">
           <GameControls
             timer={gameTimer}
@@ -236,8 +236,12 @@ function App() {
             highScore={highScore}
             currentScore={currentScore}
             gameInProgress={gameInProgress}
+            data-testid="game-controls"
           />
-          <ColorDisplay currentColor={currentColor} />
+          <ColorDisplay
+            currentColor={currentColor}
+            data-testid="color-display"
+          />
           <div className="color-options-container">
             {gameInProgress &&
               colorOptions.map((option, index) => (
@@ -247,13 +251,16 @@ function App() {
                   selected={selectedOption === option}
                   onClick={handleColorClick}
                   disabled={gameOver}
+                  data-testid={`color-option-${index}`}
                 />
               ))}
           </div>
-          {startPanelVisible && <StartPanel startGame={startGame} />}
+          {startPanelVisible && (
+            <StartPanel startGame={startGame} data-testid="start-panel" />
+          )}
         </div>
       </Container>
-      <ResetButton resetAllData={resetAllData} />
+      <ResetButton resetAllData={resetAllData} data-testid="reset-button" />
     </div>
   );
 }
